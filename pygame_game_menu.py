@@ -2,7 +2,7 @@ from typing import Any
 import pygame
 import os
 import subprocess as sub
-
+from gpiozero import MCP3008,Button
 
 #初始化pygame
 pygame.init()
@@ -15,6 +15,15 @@ HEIGHT = 480
 screen = pygame.display.set_mode((WIDTH,HEIGHT))
 pygame.display.set_caption("Game Menu")
 clock = pygame.time.Clock()
+
+#GPIO 設定
+r_pot = MCP3008(0)
+l_pot = MCP3008(1)
+up_pot = MCP3008(2)
+
+r_button = Button(26)
+l_button = Button(2)
+home_button = Button(3)
 
 #顏色設定
 BLACK = (0,0,0)
@@ -83,6 +92,11 @@ class Mouse(pygame.sprite.Sprite):
         if key_pressed[pygame.K_DOWN]:
             self.rect.y += self.speed
 
+        if l_pot.value>0.25:
+            self.rect.y -= self.speed
+        if l_pot.value<0.25:
+            self.rect.y += self.speed
+
         #滑鼠脫屏
         if self.rect.top <= 0:
             self.rect.top = 0
@@ -119,6 +133,10 @@ class Button(pygame.sprite.Sprite):
             self.image = self.bigger_img
             if key_pressed[pygame.K_j]:
                 #self.image.fill(GREEN)
+                if(self.text == 'D:\Projects\python_project\pong-game\pygame-pong-game.py' and isOpenGame == False):
+                    open_game_file()
+
+            if r_button.is_pressed:
                 if(self.text == 'D:\Projects\python_project\pong-game\pygame-pong-game.py' and isOpenGame == False):
                     open_game_file()
            
