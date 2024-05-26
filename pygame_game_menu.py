@@ -58,7 +58,8 @@ isOpenGame = False
 
 # function
 def open_game_file():
-        global isOpenGame
+        global isOpenGame,hidden
+        hidden = True
         isOpenGame=True
         sub.Popen(["python",Game_script_path])
         
@@ -67,6 +68,21 @@ def open_game_file():
 def draw_text(text,font,text_col,x,y):
     img = font.render(text,True,text_col)
     screen.blit(img,(x,y))
+
+def hidden_menu():
+    global hidden
+    screen.fill(BLACK)
+    pygame.display.update()
+
+    waiting = True
+    while waiting:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+        if home_button.is_pressed:
+            waiting = False
+            hidden = False
+
 
 class Mouse(pygame.sprite.Sprite):
     
@@ -168,11 +184,13 @@ all_sprites.add(mouse_contr,button_01,button_02,button_03)
 #pygame.mouse.set_visible(False)
 
 running = True
-
+hidden = False
 
 #遊戲迴圈
 while running:
 
+    if(hidden):
+        hidden_menu()
 
 
     clock.tick(FPS)
