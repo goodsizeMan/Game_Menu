@@ -59,7 +59,8 @@ isOpenGame = False
 
 # function
 def quit_Pygame():
-    pygame.quit()
+    global running
+    running = False
 
 def open_game_file():
         global isOpenGame,hidden
