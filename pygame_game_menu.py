@@ -3,7 +3,7 @@ import pygame
 import os
 import subprocess as sub
 from gpiozero import MCP3008,Button
-import time
+from threading import Timer
 
 #初始化pygame
 pygame.init()
@@ -58,14 +58,20 @@ Game_script_path = '/home/raspberry/root/usb/Pong_Game/pygame_pong_game.py'
 isOpenGame = False
 
 # function
+def quit_Pygame():
+    pygame.quit()
+
 def open_game_file():
         global isOpenGame,hidden
         hidden = True
         isOpenGame=True
-        sub.Popen(["python",Game_script_path])
+        sub.Popen(["python3",Game_script_path])
         #pygame.display.iconify()
-        time.sleep(5)
-        pygame.quit()
+
+        t = Timer(5,quit_Pygame)
+        t.start()
+        
+
 
 def draw_text(text,font,text_col,x,y):
     img = font.render(text,True,text_col)
