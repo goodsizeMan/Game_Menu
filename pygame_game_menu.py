@@ -42,16 +42,16 @@ stopScroll = False
 
 RealHeight = 240
 #載入圖片
-background_path = r'D:\Projects\python_project\game_menu\img\background.png'
-game_icon_path = r'D:\Projects\python_project\game_menu\img\pong_game_icon.png'
-null_icon_path = r'D:\Projects\python_project\game_menu\img\null_icon.png'
+background_path = '/home/raspberry/root/usb/Game_Menu/img/background.png'
+game_icon_path = '/home/raspberry/root/usb/Game_Menu/img/pong_game_icon.png'
+null_icon_path = '/home/raspberry/root/usb/Game_Menu/img/null_icon.png'
 
 
 background_icon = pygame.image.load(background_path).convert_alpha()
 game_icon = pygame.image.load(game_icon_path).convert_alpha()
 null_icon = pygame.image.load(null_icon_path).convert_alpha()
 #遊戲路徑
-Game_script_path = r'D:\Projects\python_project\pong-game\pygame-pong-game.py'
+Game_script_path = '/home/raspberry/root/usb/Pong_Game/pygame-pong-game.py'
 
 #開啟遊戲
 isOpenGame = False
@@ -133,11 +133,11 @@ class Button(pygame.sprite.Sprite):
             self.image = self.bigger_img
             if key_pressed[pygame.K_j]:
                 #self.image.fill(GREEN)
-                if(self.text == 'D:\Projects\python_project\pong-game\pygame-pong-game.py' and isOpenGame == False):
+                if(self.text == '/home/raspberry/root/usb/Pong_Game/pygame-pong-game.py' and isOpenGame == False):
                     open_game_file()
 
             if r_button.is_pressed:
-                if(self.text == 'D:\Projects\python_project\pong-game\pygame-pong-game.py' and isOpenGame == False):
+                if(self.text == '/home/raspberry/root/usb/Pong_Game/pygame-pong-game.py' and isOpenGame == False):
                     open_game_file()
            
         else:
@@ -168,6 +168,7 @@ all_sprites.add(mouse_contr,button_01,button_02,button_03)
 #pygame.mouse.set_visible(False)
 
 running = True
+
 
 #遊戲迴圈
 while running:
