@@ -61,6 +61,7 @@ isOpenGame = False
 def quit_Pygame():
     global running
     running = False
+    close_GPIO()
 
 def open_game_file():
         global isOpenGame,hidden
@@ -79,6 +80,7 @@ def draw_text(text,font,text_col,x,y):
     screen.blit(img,(x,y))
 
 def hidden_menu():
+
     global hidden
     screen.fill(BLACK)
     pygame.display.update()
@@ -91,6 +93,13 @@ def hidden_menu():
         if home_button.is_pressed:
             waiting = False
             hidden = False
+def close_GPIO():
+    r_pot.close()
+    l_pot.close()
+    up_pot.close()
+    r_button.close()
+    l_button.close()
+    home_button.close()
 
 
 class Mouse(pygame.sprite.Sprite):
