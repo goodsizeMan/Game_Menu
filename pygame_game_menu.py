@@ -3,6 +3,7 @@ import pygame
 import os
 import subprocess as sub
 from gpiozero import MCP3008,Button
+import time
 
 #初始化pygame
 pygame.init()
@@ -51,7 +52,7 @@ background_icon = pygame.image.load(background_path).convert_alpha()
 game_icon = pygame.image.load(game_icon_path).convert_alpha()
 null_icon = pygame.image.load(null_icon_path).convert_alpha()
 #遊戲路徑
-Game_script_path = '/home/raspberry/root/usb/Pong_Game/pygame-pong-game.py'
+Game_script_path = '/home/raspberry/root/usb/Pong_Game/pygame_pong_game.py'
 
 #開啟遊戲
 isOpenGame = False
@@ -62,7 +63,8 @@ def open_game_file():
         hidden = True
         isOpenGame=True
         sub.Popen(["python",Game_script_path])
-        
+        #pygame.display.iconify()
+        time.sleep(5)
         pygame.quit()
 
 def draw_text(text,font,text_col,x,y):
@@ -189,8 +191,8 @@ hidden = False
 #遊戲迴圈
 while running:
 
-    if(hidden):
-        hidden_menu()
+    #if(hidden):
+        #hidden_menu()
 
 
     clock.tick(FPS)
