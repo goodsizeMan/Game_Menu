@@ -157,11 +157,11 @@ class Button(pygame.sprite.Sprite):
             self.image = self.bigger_img
             if key_pressed[pygame.K_j]:
                 #self.image.fill(GREEN)
-                if(self.text == '/home/raspberry/root/usb/Pong_Game/pygame-pong-game.py' and isOpenGame == False):
+                if(self.text == '/home/raspberry/root/usb/Pong_Game/pygame_pong_game.py' and isOpenGame == False):
                     open_game_file()
 
             if r_button.is_pressed:
-                if(self.text == '/home/raspberry/root/usb/Pong_Game/pygame-pong-game.py' and isOpenGame == False):
+                if(self.text == '/home/raspberry/root/usb/Pong_Game/pygame_pong_game.py' and isOpenGame == False):
                     open_game_file()
            
         else:
